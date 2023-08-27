@@ -3,6 +3,7 @@
     
     "sidenav.dashboard": "Tableau de bord",
     "sidenav.dashboard.default": "Défaut",
+    "sidenav.dashboard.user.profile": "Perfil de Usuario",
     "sidenav.dashboard.analytic": "Analytique",
     "sidenav.dashboard.sales": "Ventes",
 
