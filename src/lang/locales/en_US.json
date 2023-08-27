@@ -3,6 +3,9 @@
 	
 	"sidenav.dashboard": "Dashboard",
 	"sidenav.dashboard.default": "Default",
+	"sidenav.employees": "Employees",
+	"sidenav.employees.attendance": "Attendance",
+	"sidenav.employees.salary_transactions": "Salary Transaction",
 	"sidenav.dashboard.analytic": "Analytic",
 	"sidenav.dashboard.sales": "Sales",
 
@@ -94,6 +97,7 @@
 	"sidenav.components.other.backtop": "BackTop",
 	"sidenav.components.other.configProvider": "Config Provider",
 	"sidenav.components.other.divider": "Divider",
+	"sidenav.user.profile": "User Profile",
 	
 	"sidenav.charts": "Charts",
 	"sidenav.charts.apex": "Apex Charts",
