@@ -7,22 +7,24 @@ import history from "./history";
 import Layouts from "./layouts";
 import { THEME_CONFIG } from "./configs/AppConfig";
 import "./lang";
-import mockServer from "./mock";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import mockServer from "./mock";
 
 const themes = {
   dark: `${process.env.PUBLIC_URL}/css/dark-theme.css`,
   light: `${process.env.PUBLIC_URL}/css/light-theme.css`,
 };
 
-const environment = process.env.NODE_ENV;
+const environment = process.env.REACT_APP_BASE_URL;
 
-if (environment !== "production") {
-  mockServer({ environment });
+if (environment) {
+  // mockServer({ environment });
 }
-
+const queryClient = new QueryClient();
 function App() {
   return (
     <div className="App">
+     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <BrowserRouter history={history}>
           <ThemeSwitcherProvider
@@ -34,6 +36,7 @@ function App() {
           </ThemeSwitcherProvider>
         </BrowserRouter>
       </Provider>
+      </QueryClientProvider>
     </div>
   );
 }

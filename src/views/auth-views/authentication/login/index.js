@@ -2,13 +2,15 @@ import React from 'react'
 import LoginForm from '../../components/LoginForm'
 import { Card, Row, Col } from "antd";
 import { useSelector } from 'react-redux';
+import { QueryClient } from '@tanstack/query-core';
+import { QueryClientProvider } from '@tanstack/react-query';
 
 const backgroundStyle = {
 	backgroundImage: 'url(/img/others/img-17.jpg)',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover'
 }
-
+const queryClient = new QueryClient();
 const Login = props => {
 	const theme = useSelector(state => state.theme.currentTheme)
 	return (
@@ -20,11 +22,12 @@ const Login = props => {
 							<div className="my-4">
 								<div className="text-center">
 									<h1>Login</h1>
-									{/* <p>Don't have an account yet? <a href="/auth/register">Sign Up</a></p> */}
 								</div>
 								<Row justify="center">
 									<Col xs={24} sm={24} md={20} lg={20}>
+									<QueryClientProvider client={queryClient}>
 										<LoginForm {...props} />
+									</QueryClientProvider>
 									</Col>
 								</Row>
 							</div>

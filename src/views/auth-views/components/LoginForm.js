@@ -1,123 +1,94 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Button, Form, Input, Alert } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import PropTypes from 'prop-types';
-import { 
-	signIn, 
-	showLoading, 
-	showAuthMessage, 
-	hideAuthMessage, 
-} from 'store/slices/authSlice';
-import { useNavigate } from 'react-router-dom'
-import { motion } from "framer-motion"
+import React from "react";
+import { connect } from "react-redux";
+import { Button, Form, Input } from "antd";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
+import {
+  signIn,
+  showLoading,
+  showAuthMessage,
+  hideAuthMessage,
+} from "store/slices/authSlice";
+import { useState } from "react";
+import { useLoginUsers } from "queries/auth.query";
+import { useAuthStore } from "configs/auth.store";
 
-export const LoginForm = props => {
-	
-	const navigate = useNavigate();
+export const LoginForm = (props) => {
+  const { showLoading, signIn } = props;
 
-	const { 
-		hideAuthMessage,
-		showLoading,
-		signIn, 
-		token, 
-		loading,
-		redirect,
-		showMessage,
-		message,
-		allowRedirect = true
-	} = props
+  const initialCredential = useState({
+    email: "",
+    password: "",
+  });
+  const { login } = useAuthStore();
+  const { mutate, isLoading } = useLoginUsers();
+  const onLogin = async (values) => {
+    showLoading();
+    mutate(values, {
+      onSuccess: (data) => {
+        const { token, user } = data;
+        login({ isLoggedIn: true, token, user });
+        signIn(values);
+      },
+    });
+  };
 
-	const initialCredential = {
-		email: 'user1@themenate.net',
-		password: '2005ipo'
-	}
-
-	const onLogin = values => {
-		showLoading()
-		signIn(values);
-	};
-
-	useEffect(() => {
-		if (token !== null && allowRedirect) {
-			navigate(redirect)
-		}
-		if (showMessage) {
-			const timer = setTimeout(() => hideAuthMessage(), 3000)
-			return () => {
-				clearTimeout(timer);
-			};
-		}
-	});
-	
-	return (
-		<>
-			<motion.div 
-				initial={{ opacity: 0, marginBottom: 0 }} 
-				animate={{ 
-					opacity: showMessage ? 1 : 0,
-					marginBottom: showMessage ? 20 : 0 
-				}}> 
-				<Alert type="error" showIcon message={message}></Alert>
-			</motion.div>
-			<Form 
-				layout="vertical" 
-				name="login-form" 
-				initialValues={initialCredential}
-				onFinish={onLogin}
-			>
-				<Form.Item 
-					name="email" 
-					label="Email" 
-					rules={[
-						{ 
-							required: true,
-							message: 'Please input your email',
-						},
-						{ 
-							type: 'email',
-							message: 'Please enter a validate email!'
-						}
-					]}>
-					<Input prefix={<MailOutlined className="text-primary" />}/>
-				</Form.Item>
-				<Form.Item 
-					name="password" 
-					label={
-							<span>Password</span>
-					} 
-					rules={[
-						{ 
-							required: true,
-							message: 'Please input your password',
-						}
-					]}
-				>
-					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
-				</Form.Item>
-				<Form.Item>
-					<Button type="primary" htmlType="submit" block loading={loading}>
-						Sign In
-					</Button>
-				</Form.Item>
-			</Form>
-		</>
-	)
-}
-LoginForm.propTypes = {
-	extra: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.element
-	]),
+  return (
+    <>
+      <Form
+        layout="vertical"
+        name="login-form"
+        initialValues={initialCredential}
+        onFinish={onLogin}
+      >
+        <Form.Item
+          name="email"
+          label="Email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email",
+            },
+            {
+              type: "email",
+              message: "Please enter a validate email!",
+            },
+          ]}
+        >
+          <Input prefix={<MailOutlined className="text-primary" />} />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          label={<span>Password</span>}
+          rules={[
+            {
+              required: true,
+              message: "Please input your password",
+            },
+          ]}
+        >
+          <Input.Password prefix={<LockOutlined className="text-primary" />} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" block loading={isLoading}>
+            Sign In
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
+  );
 };
-const mapStateToProps = ({auth}) => {
-	const {loading, message, showMessage, token, redirect} = auth;
-  return {loading, message, showMessage, token, redirect}
-}
+LoginForm.propTypes = {
+  extra: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+};
+const mapStateToProps = ({ auth }) => {
+  const { loading, message, showMessage, token, redirect } = auth;
+  return { loading, message, showMessage, token, redirect };
+};
 const mapDispatchToProps = {
-	signIn,
-	showAuthMessage,
-	showLoading,
-	hideAuthMessage,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+  signIn,
+  showAuthMessage,
+  showLoading,
+  hideAuthMessage,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

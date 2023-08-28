@@ -1,8 +1,6 @@
 import { SIDE_NAV_LIGHT, NAV_TYPE_SIDE, DIR_RTL } from "constants/ThemeConstant";
-import { env } from "./EnvironmentConfig";
 
 export const APP_NAME = "Nene Qashang";
-export const API_BASE_URL = env.API_ENDPOINT_URL;
 export const APP_PREFIX_PATH = "/app";
 export const AUTH_PREFIX_PATH = "/auth";
 export const REDIRECT_URL_KEY = "redirect";

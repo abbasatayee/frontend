@@ -6,7 +6,6 @@ import { AUTHENTICATED_ENTRY } from 'configs/AppConfig'
 const PublicRoute = () => {
 
 	const { token } = useSelector(state => state.auth)
-  
 	return token ? <Navigate to={AUTHENTICATED_ENTRY} /> : <Outlet/>
 }
 
