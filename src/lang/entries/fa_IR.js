@@ -1,5 +1,5 @@
-import antdFaIR from 'antd/es/locale/fa_IR'; // Import Persian locale
-import faIRMsg from '../locales/fa_IR.json'; // Import your translated messages
+import antdFaIR from 'antd/es/locale/fa_IR'; 
+import faIRMsg from '../locales/fa_IR.json'; 
 
 const FaIRLang = {
   antd: antdFaIR,
