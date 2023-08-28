@@ -10,7 +10,7 @@ export const UNAUTHENTICATED_ENTRY = "/login";
 export const THEME_CONFIG = {
   navCollapsed: false,
   sideNavTheme: SIDE_NAV_LIGHT,
-  locale: "en",
+  locale: "fa",
   navType: NAV_TYPE_SIDE,
   topNavColor: "#3e82f7",
   headerNavColor: "",

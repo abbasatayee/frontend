@@ -2,7 +2,9 @@ import antdEnUS from 'antd/es/locale/en_US';
 import antdZhCn from 'antd/es/locale/zh_CN';
 import antdFrFR from 'antd/es/locale/fr_FR';
 import antdJaJP from 'antd/es/locale/ja_JP';
+import antdFaIR from 'antd/es/locale/fa_IR';
 import en from './locales/en_US.json'
+import fa from './locales/fa_IR.json'
 import zh from './locales/zh_CN.json'
 import fr from './locales/fr_FR.json'
 import ja from './locales/ja_JP.json'
@@ -14,6 +16,10 @@ export const resources = {
     en: {
         translation: en,
         antd: antdEnUS
+    },
+    fa: {
+        translation: fa,
+        antd: antdFaIR
     },
     zh: {
         translation: zh,

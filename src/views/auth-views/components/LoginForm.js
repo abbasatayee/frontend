@@ -43,15 +43,15 @@ export const LoginForm = (props) => {
       >
         <Form.Item
           name="email"
-          label="Email"
+          label="ایمیل"
           rules={[
             {
               required: true,
-              message: "Please input your email",
+              message: "لطفا ایمیل خود را وارد کنید",
             },
             {
               type: "email",
-              message: "Please enter a validate email!",
+              message: "لطفاً یک ایمیل تأیید اعتبار وارد کنید!",
             },
           ]}
         >
@@ -59,11 +59,11 @@ export const LoginForm = (props) => {
         </Form.Item>
         <Form.Item
           name="password"
-          label={<span>Password</span>}
+          label={<span>رمز عبور</span>}
           rules={[
             {
               required: true,
-              message: "Please input your password",
+              message: "لطفا رمز عبور خود را وارد کنید",
             },
           ]}
         >
@@ -71,7 +71,7 @@ export const LoginForm = (props) => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" block loading={isLoading}>
-            Sign In
+		  ورود
           </Button>
         </Form.Item>
       </Form>

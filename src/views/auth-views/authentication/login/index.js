@@ -21,7 +21,7 @@ const Login = props => {
 						<Card>
 							<div className="my-4">
 								<div className="text-center">
-									<h1>Login</h1>
+									<h1>ورود به سیستم</h1>
 								</div>
 								<Row justify="center">
 									<Col xs={24} sm={24} md={20} lg={20}>
