@@ -63,7 +63,7 @@ export const AppLayout = ({ navCollapsed, navType, direction, children }) => {
         if(direction === TEMPLATE.DIR_RTL) {
             return {paddingRight: getLayoutGutter()}
         }
-        return {paddingLeft: getLayoutGutter()}
+        return {paddingLeft:0}
     }
 
     return (
