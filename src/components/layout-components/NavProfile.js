@@ -2,10 +2,6 @@ import React from "react";
 import { Dropdown, Avatar } from "antd";
 import { useDispatch } from "react-redux";
 import {
-  EditOutlined,
-  SettingOutlined,
-  ShopOutlined,
-  QuestionCircleOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 import NavItem from "./NavItem";
@@ -18,7 +14,6 @@ import {
   SPACER,
   FONT_SIZES,
 } from "constants/ThemeConstant";
-import { useParams } from "react-router-dom";
 import { useGetAuthUserData } from "queries/auth.query";
 import { useAuthStore } from "configs/auth.store";
 const Icon = styled.div(() => ({
@@ -45,13 +40,6 @@ const Name = styled.div(() => ({
 const Title = styled.span(() => ({
   opacity: 0.8,
 }));
-
-// const MenuItem = (props) => (
-// 	<Flex as="a" href={props.path} alignItems="center" gap={SPACER[2]}>
-// 		<Icon>{props.icon}</Icon>
-// 		<span>{props.label}</span>
-// 	</Flex>
-// )
 
 const MenuItemSignOut = (props) => {
 	const {logout} = useAuthStore();
