@@ -1,7 +1,8 @@
 import React from "react";
 import { useGetUserData } from "queries/user.query";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Dropdown, Row, Space } from "antd";
 import { useSelector } from "react-redux";
+import { DownOutlined } from "@ant-design/icons";
 
 const Index = () => {
   const navCollapsed = useSelector((state) => state.theme.navCollapsed);
@@ -21,7 +22,23 @@ const Index = () => {
     height: "100vh",
     paddingLeft: 0,
   };
-
+  const items = [
+    {
+      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      key: "0",
+    },
+    {
+      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      key: "1",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: "3rd menu item",
+      key: "3",
+    },
+  ];
   const responsiveColStyle = {
     width: "100%",
     height: "auto",
@@ -36,7 +53,7 @@ const Index = () => {
           xs={responsiveColStyle}
         >
           <Card>
-            <h2>Employees Attendance</h2>
+            <h2>حاضری کارمندان</h2>
           </Card>
           <Card>
             <div>
@@ -45,6 +62,19 @@ const Index = () => {
               ))}
             </div>
           </Card>
+          <Dropdown
+            menu={{
+              items,
+            }}
+            trigger={["click"]}
+          >
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                Click me
+                <DownOutlined />
+              </Space>
+            </a>
+          </Dropdown>
         </Col>
       </Row>
     </div>

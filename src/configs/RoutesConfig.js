@@ -21,8 +21,13 @@ export const publicRoutes = [
 
 export const protectedRoutes = [
     {
-        key: 'employees',
-        path: `${APP_PREFIX_PATH}/employees`,
+        key: 'dashboards.default',
+        path: `${APP_PREFIX_PATH}/dashboards/default`,
+        component: React.lazy(() => import('views/app-views/dashboards/default')),
+    },
+    {
+        key: 'employees.attendance',
+        path: `${APP_PREFIX_PATH}/employees/attendance`,
         component: React.lazy(() => import('views/app-views/employees/attendance')),
     },
     {

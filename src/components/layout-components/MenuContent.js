@@ -7,7 +7,8 @@ import navigationConfig from 'configs/NavigationConfig';
 import { useSelector, useDispatch } from 'react-redux';
 import { SIDE_NAV_LIGHT, NAV_TYPE_SIDE } from "constants/ThemeConstant";
 import utils from 'utils'
-import { onMobileNavToggle } from 'store/slices/themeSlice';
+import { onMobileNavToggle, toggleCollapsedNav } from 'store/slices/themeSlice';
+import '../../style/MenuStyle.css'
 
 const { useBreakpoint } = Grid;
 
@@ -49,14 +50,7 @@ const MenuItem = ({title, icon, path}) => {
 	)
 }
 
-const getSideNavMenuItem = (navItem) => navItem.map(nav => {
-	return {
-		key: nav.key,
-		label: <MenuItem title={nav.title} {...(nav.isGroupTitle ? {} : {path: nav.path, icon: nav.icon})} />,
-		...(nav.isGroupTitle ? {type: 'group'} : {}),
-		...(nav.submenu.length > 0 ? {children: getSideNavMenuItem(nav.submenu)} : {})
-	}
-})
+
 
 const getTopNavMenuItem = (navItem) => navItem.map(nav => {
 	return {
@@ -65,28 +59,55 @@ const getTopNavMenuItem = (navItem) => navItem.map(nav => {
 		...(nav.submenu.length > 0 ? {children: getTopNavMenuItem(nav.submenu)} : {})
 	}
 })
-
 const SideNavContent = (props) => {
-
 	const { routeInfo, hideGroupTitle } = props;
-
-	const sideNavTheme = useSelector(state => state.theme.sideNavTheme);
-
-	const menuItems = useMemo(() => getSideNavMenuItem(navigationConfig), []);
-
+	const sideNavTheme = useSelector((state) => state.theme.sideNavTheme);
+  
+	const getSideNavMenuItem = (navItem) =>
+	  navItem.map((nav) => {
+		if (nav.submenu && nav.submenu.length > 0) {
+		  return renderSubMenu(nav);
+		}
+  
+		return (
+		  <Menu.Item key={nav.key}>
+			<MenuItem title={nav.title} {...(nav.isGroupTitle ? {} : { path: nav.path, icon: nav.icon })} />
+		  </Menu.Item>
+		);
+	  });
+  
+	const renderSubMenu = (subMenu) => {
+	  return (
+		<Menu.SubMenu
+		  key={subMenu.key}
+		  icon={subMenu.icon && <Icon type={subMenu.icon} />}
+		  title={<MenuItem title={subMenu.title} />}
+		>
+		  {subMenu.submenu.map((item) => (
+			<Menu.Item key={item.key}>
+			  <MenuItem title={item.title} path={item.path} icon={item.icon} />
+			</Menu.Item>
+		  ))}
+		</Menu.SubMenu>
+	  );
+	};
+  
+	const menuItems = getSideNavMenuItem(navigationConfig);
+  
 	return (
-		<Menu
-			mode="inline"
-			theme={sideNavTheme === SIDE_NAV_LIGHT ? "light" : "dark"}
-			style={{ height: "100%", borderInlineEnd: 0 }}
-			defaultSelectedKeys={[routeInfo?.key]}
-			defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
-			className={hideGroupTitle ? "hide-group-title" : ""}
-			items={menuItems}
-		/>
+	  <Menu
+		mode="inline"
+		theme={sideNavTheme === SIDE_NAV_LIGHT ? 'light' : 'dark'}
+		style={{ height: '100%', borderInlineEnd: 0 }}
+		defaultSelectedKeys={[routeInfo?.key]}
+		defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
+		inlineCollapsed={toggleCollapsedNav}
+		className={`${hideGroupTitle ? 'hide-group-title' : ''}`}
+	  >
+		{menuItems}
+	  </Menu>
 	);
-};
-
+  };
 const TopNavContent = () => {
 
 	const topNavColor = useSelector(state => state.theme.topNavColor);

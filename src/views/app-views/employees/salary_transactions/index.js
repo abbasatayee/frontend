@@ -26,7 +26,7 @@ const index = () => {
         xs={responsiveColStyle}
       >
         <Card>
-          <h2>Salary Transaction</h2>
+          <h2>تراکنش  های حقوقی</h2>
         </Card>
       </Col>
     </Row>

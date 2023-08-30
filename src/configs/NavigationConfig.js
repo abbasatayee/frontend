@@ -1,31 +1,31 @@
-import { DashboardOutlined } from "@ant-design/icons";
+import { DashboardOutlined,  FieldTimeOutlined,  MoneyCollectTwoTone,  UserAddOutlined } from "@ant-design/icons";
 import { APP_PREFIX_PATH } from "configs/AppConfig";
 
 const dashBoardNavTree = [
-  // {
-  //   key: "dashboards",
-  //   path: `${APP_PREFIX_PATH}/dashboards`,
-  //   title: "sidenav.dashboard",
-  //   icon: DashboardOutlined,
-  //   breadcrumb: false,
-  //   isGroupTitle: true,
-  //   submenu: [
-  //     {
-  //       key: "dashboards-default",
-  //       path: `${APP_PREFIX_PATH}/dashboards/default`,
-  //       title: "sidenav.dashboard.default",
-  //       icon: DashboardOutlined,
-  //       breadcrumb: false,
-  //       submenu: [],
-  //     },
+  {
+    key: "dashboards",
+    path: `${APP_PREFIX_PATH}/dashboards`,
+    title: "sidenav.dashboard",
+    icon: DashboardOutlined,
+    breadcrumb: false,
+    isGroupTitle: true,
+    submenu: [
+      {
+        key: "dashboards-default",
+        path: `${APP_PREFIX_PATH}/dashboards/default`,
+        title: "sidenav.dashboard.default",
+        icon: DashboardOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
      
-  //   ],
-  // },
+    ],
+  },
   {
     key: "employees",
     path: `${APP_PREFIX_PATH}/employees`,
     title: "sidenav.employees",
-    icon: DashboardOutlined,
+    icon: UserAddOutlined,
     breadcrumb: false,
     isGroupTitle: true,
     submenu: [
@@ -33,7 +33,7 @@ const dashBoardNavTree = [
         key: "employees-attendance",
         path: `${APP_PREFIX_PATH}/employees/attendance`,
         title: "sidenav.employees.attendance",
-        icon: DashboardOutlined,
+        icon: FieldTimeOutlined,
         breadcrumb: false,
         submenu: [],
       },
@@ -41,7 +41,7 @@ const dashBoardNavTree = [
         key: "employees-salary_transactions",
         path: `${APP_PREFIX_PATH}/employees/salary_transactions`,
         title: "sidenav.employees.salary_transactions",
-        icon: DashboardOutlined,
+        icon: MoneyCollectTwoTone,
         breadcrumb: false,
         submenu: [],
       },
