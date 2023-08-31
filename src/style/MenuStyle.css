@@ -1,21 +1,19 @@
-.Menu {
-    background-color: royalblue;
-}
+/* .Menu {
+    background-color: chartreuse;
+} */
 
 .ant-menu-submenu {
-    color: #ffb765;
+    color: royalblue;
 }
-
-.ant-menu-light .ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
-    color: white;
-}
-
 .ant-menu-light .ant-menu-item:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
-    color: #ffb765;
+    color: royalblue;
 }
 
 .ant-menu-light.ant-menu-inline .ant-menu-submenu-title {
-    color: white;
+    color: royalblue;
+}
+.ant-menu-light .ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
+    color: royalblue;
 }
 
 .ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
@@ -23,16 +21,16 @@
 }
 
 .ant-menu-light .ant-menu-item-selected {
-    color: royalblue;
+    color: white;
 }
 
 .ant-menu-light .ant-menu-item-selected {
-    background-color: white;
+    background-color: royalblue;
 }
 
 .ant-menu .ant-menu-item .ant-menu-item-icon,
 :where(.css-dev-only-do-not-override-1i5zyo0).ant-menu .ant-menu-submenu-title .ant-menu-item-icon {
-    color: white;
+    color: royalblue;
     margin-left: 10px;
 }
 
@@ -54,6 +52,9 @@
 }
 .side-nav{
     min-width: 270px !important;
+    border: 1px solid blue !important;
+    border-radius: 40px 40px !important;
+    padding: 10px !important;
 }
 
 .ant-layout-sider-collapsed {
@@ -63,11 +64,23 @@
     width: 0px !important;
 
 }
-.ant-menu-submenu-vertical {
-    /* background-color: red !important; */
+/* .ant-menu-submenu-vertical {
+    background-color: red !important;
     color: white !important;
-}
+} */
 .ant-menu-item {
     padding-top: 5px !important;
     height: 60px !important;
 }
+.ant-menu-inline .ant-menu-submenu{
+    padding-top: 5px;
+}
+.ant-menu-item-selected{
+    margin-top: 0px !important;
+    border-radius: 100px !important;
+}
+/* .ant-menu-submenu{
+    border: 1px solid #dfdfe1 !important;
+    border-radius: 34px !important;
+    background: radial-gradient(black, transparent) !important;
+} */
