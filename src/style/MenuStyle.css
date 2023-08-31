@@ -1,0 +1,73 @@
+.Menu {
+    background-color: royalblue;
+}
+
+.ant-menu-submenu {
+    color: #ffb765;
+}
+
+.ant-menu-light .ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
+    color: white;
+}
+
+.ant-menu-light .ant-menu-item:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
+    color: #ffb765;
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-submenu-title {
+    color: white;
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+    background: none;
+}
+
+.ant-menu-light .ant-menu-item-selected {
+    color: royalblue;
+}
+
+.ant-menu-light .ant-menu-item-selected {
+    background-color: white;
+}
+
+.ant-menu .ant-menu-item .ant-menu-item-icon,
+:where(.css-dev-only-do-not-override-1i5zyo0).ant-menu .ant-menu-submenu-title .ant-menu-item-icon {
+    color: white;
+    margin-left: 10px;
+}
+
+.ant-menu .ant-menu-item .anticon+span {
+    font-size: 15px;
+}
+
+.ant-menu .ant-menu-item .anticon {
+    font-size: 15px !important;
+    margin-left: 10px;
+}
+
+.ant-layout * {
+    font-size: 20px;
+}
+
+.ant-menu-submenu-title {
+    height: 75px;
+}
+.side-nav{
+    min-width: 270px !important;
+}
+
+.ant-layout-sider-collapsed {
+    flex: 0 0 80px;
+    max-width: 80px;
+    min-width: 90px !important;
+    width: 0px !important;
+
+}
+.ant-menu-submenu-vertical {
+    /* background-color: red !important; */
+    color: white !important;
+}
+.ant-menu-item {
+    padding-top: 5px !important;
+    height: 60px !important;
+}

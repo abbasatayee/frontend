@@ -1,4 +1,4 @@
-import { DashboardOutlined,  FieldTimeOutlined,  MoneyCollectTwoTone,  UserAddOutlined } from "@ant-design/icons";
+import { DashboardOutlined,  FieldTimeOutlined,  MoneyCollectFilled,  MoneyCollectTwoTone,  UserAddOutlined } from "@ant-design/icons";
 import { APP_PREFIX_PATH } from "configs/AppConfig";
 
 const dashBoardNavTree = [
@@ -41,7 +41,7 @@ const dashBoardNavTree = [
         key: "employees-salary_transactions",
         path: `${APP_PREFIX_PATH}/employees/salary_transactions`,
         title: "sidenav.employees.salary_transactions",
-        icon: MoneyCollectTwoTone,
+        icon: MoneyCollectFilled,
         breadcrumb: false,
         submenu: [],
       },

@@ -102,7 +102,7 @@ const SideNavContent = (props) => {
 		defaultSelectedKeys={[routeInfo?.key]}
 		defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
 		inlineCollapsed={toggleCollapsedNav}
-		className={`${hideGroupTitle ? 'hide-group-title' : ''}`}
+		className={`Menu ${hideGroupTitle ? 'hide-group-title' : ''}`}
 	  >
 		{menuItems}
 	  </Menu>

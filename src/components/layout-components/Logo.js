@@ -2,6 +2,7 @@ import React from 'react';
 import { SIDE_NAV_WIDTH, SIDE_NAV_COLLAPSED_WIDTH, NAV_TYPE_TOP } from 'constants/ThemeConstant';
 import { useSelector } from 'react-redux';
 import utils from 'utils';
+import { APP_NAME } from 'configs/AppConfig';
 import { Grid, Typography } from 'antd';
 import styled from '@emotion/styled';
 import { TEMPLATE } from 'constants/ThemeConstant';
@@ -36,18 +37,30 @@ export const Logo = ({ mobileLogo, logoType }) => {
       return `${SIDE_NAV_WIDTH}px`;
     }
   };
-
-  const renderLogoContent = () => {
-    if (navCollapsed) {
-      return <Typography.Text><h2>N-Q</h2></Typography.Text>;
-    } else {
-      return <Typography.Text><h2>Nene Qashang</h2></Typography.Text>;
-    }
-  };
+  const getLogo = () => {
+		if(logoType === 'light') {
+			if(navCollapsed) {
+			return '/img/logo-sm-white.png'
+			}
+			return '/img/logo-white.png'
+		}
+	
+		if (navCollapsed) {
+			return '/img/logo-sm.png'
+		}
+		return '/img/logo.png'
+	}
+  // const renderLogoContent = () => {
+  //   if (navCollapsed) {
+  //     return <Typography.Text><h2>N-Q</h2></Typography.Text>;
+  //   } else {
+  //     return <Typography.Text><h2>Nene Qashang</h2></Typography.Text>;
+  //   }
+  // };
 
   return (
     <LogoWrapper className={isMobile && !mobileLogo ? 'd-none' : 'logo'} style={{ width: `${getLogoWidthGutter()}` }}>
-      {renderLogoContent()}
+      <img src={getLogo()} alt={`${APP_NAME} logo`} />
     </LogoWrapper>
   );
 };
