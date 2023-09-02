@@ -1,24 +1,50 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Card, Col, Row, Table, Pagination, Select } from "antd";
-import { useGetUserData } from "queries/user.query";
+import { Card, Col, Row, Table, Pagination, Select, Avatar } from "antd";
 import IntlMessage from "components/util-components/IntlMessage";
+import { useGetEmployeesData } from "queries/employee.query";
 
 const setLocale = (localeKey, isLocaleOn = true) =>
   isLocaleOn ? <IntlMessage id={localeKey} /> : localeKey.toString();
 
 const columns = [
   {
+    title: <h4>{setLocale("table.id")}</h4>,
+    dataIndex: "id",
+  },
+  {
     title: <h4>{setLocale("table.name")}</h4>,
     dataIndex: "name",
   },
   {
-    title: <h4>{setLocale("table.email")}</h4>,
-    dataIndex: "email",
+    title: <h4>{setLocale("table.lastname")}</h4>,
+    dataIndex: "lastname",
   },
   {
-    title: <h4>{setLocale("table.role")}</h4>,
-    dataIndex: "role",
+    title: <h4>{setLocale("table.gender")}</h4>,
+    dataIndex: "gender",
+  },
+  {
+    title: <h4>{setLocale("table.phone")}</h4>,
+    dataIndex: "phone",
+  },
+  {
+    title: <h4>{setLocale("table.photo")}</h4>,
+    dataIndex: "photo",
+    render: (text, record) => {
+      console.log("Image URL:", `http://localhost:8000/${record.photo}`);
+      return (
+      <Avatar  src={`http://localhost:8000/${record.photo}`} size={64} />
+      );
+      },
+  },
+  {
+    title: <h4>{setLocale("table.position")}</h4>,
+    dataIndex: "position",
+  },
+  {
+    title: <h4>{setLocale("table.salary")}</h4>,
+    dataIndex: "salary",
   },
 ];
 
@@ -29,7 +55,7 @@ const Index = () => {
 
   const isMobile = window.innerWidth <= 576;
   const marginRight = isMobile ? "0" : navCollapsed ? "75px" : "250px";
-  const { data, isLoading, isError } = useGetUserData(
+  const { data, isLoading, isError } = useGetEmployeesData(
     pagination.current,
     pagination.pageSize
   );

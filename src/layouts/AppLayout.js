@@ -67,13 +67,13 @@ export const AppLayout = ({ navCollapsed, navType, direction, children }) => {
     }
 
     return (
-        <Layout>
+        <Layout >
             <HeaderNav isMobile={isMobile}/>
             {(isNavTop && !isMobile) ? <TopNav routeInfo={currentRouteInfo}/> : null}
-            <Layout>
+            <Layout >
                 {(isNavSide && !isMobile) ? <SideNav routeInfo={currentRouteInfo}/> : null }
                 <Layout style={getLayoutDirectionGutter()}>
-                    <AppContent>
+                    <AppContent style={{height:1300}}>
                         <PageHeader display={currentRouteInfo?.breadcrumb} title={currentRouteInfo?.title} />
                         <Content className="h-100">
                             <Suspense fallback={<Loading cover="content"/>}>
@@ -81,7 +81,7 @@ export const AppLayout = ({ navCollapsed, navType, direction, children }) => {
                             </Suspense>
                         </Content>
                     </AppContent>
-                    <Footer />
+                    {/* <Footer /> */}
                 </Layout>
             </Layout>
             {isMobile && <MobileNav />}

@@ -129,8 +129,15 @@
     "sidenav.docs": "مستندات",
     "sidenav.docs.documentation": "مستندات",
     "sidenav.docs.changelog": "تغییرات",
+    "table.id":"آیدی",
     "table.name":"نام",
-    "table.email":"ایمیل",
+    "table.lastname":"تخلص",
+    "table.gender":"جنسیت",
+    "table.storeName":"نام فروشگاه",
+    "table.phone":"شماره تماس",
+    "table.photo":"عکس",
+    "table.position":"درجه",
+    "table.salary":"معاش",
     "table.role":"نقش"
     
   }
