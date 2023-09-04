@@ -17,14 +17,14 @@ const Login = props => {
 		<div className="h-100" style={backgroundStyle}>
 			<div className="container d-flex flex-column justify-content-center h-100">
 				<Row justify="center">
-					<Col xs={20} sm={20} md={20} lg={7}>
+					<Col xs={20} sm={20} md={20} lg={9}>
 						<Card>
 							<div className="my-4">
 								<div className="text-center">
 									<h1>ورود به سیستم</h1>
 								</div>
 								<Row justify="center">
-									<Col xs={24} sm={24} md={20} lg={20}>
+									<Col xs={24} sm={24} md={20} lg={22}>
 									<QueryClientProvider client={queryClient}>
 										<LoginForm {...props} />
 									</QueryClientProvider>
