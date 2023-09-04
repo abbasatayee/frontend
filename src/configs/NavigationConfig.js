@@ -30,9 +30,9 @@ const dashBoardNavTree = [
     isGroupTitle: true,
     submenu: [
       {
-        key: "employees-attendance",
-        path: `${APP_PREFIX_PATH}/employees/attendance`,
-        title: "sidenav.employees.attendance",
+        key: "employees-allEmployees",
+        path: `${APP_PREFIX_PATH}/employees/allEmployees`,
+        title: "sidenav.employees.allEmployees",
         icon: FieldTimeOutlined,
         breadcrumb: true,
         submenu: [],

@@ -26,9 +26,9 @@ export const protectedRoutes = [
         component: React.lazy(() => import('views/app-views/dashboards/default')),
     },
     {
-        key: 'employees.attendance',
-        path: `${APP_PREFIX_PATH}/employees/attendance`,
-        component: React.lazy(() => import('views/app-views/employees/attendance')),
+        key: 'employees.allEmployees',
+        path: `${APP_PREFIX_PATH}/employees/allEmployees`,
+        component: React.lazy(() => import('views/app-views/employees/allEmployees')),
     },
     {
         key: 'employees.salary_transactions',
