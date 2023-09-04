@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Card,
-  Col,
   Row,
   Table,
-  Pagination,
-  Select,
   Avatar,
   Button,
 } from "antd";
 import IntlMessage from "components/util-components/IntlMessage";
 import { useGetEmployeesData } from "queries/employee.query";
 import CreateEmployee from "./create.employee";
-import { PlusCircleTwoTone } from "@ant-design/icons";
-
+import { DeleteOutlined, PlusCircleTwoTone } from "@ant-design/icons";
+import DeleteEmployee from "./delete.employee";
+import CustomPagination from "views/app-views/pagination/customPagination";
+import '../../../../style/app-views.css'
+import ResponsiveCol from "views/app-views/styleJs/ResponsiveCol";
 const setLocale = (localeKey, isLocaleOn = true) =>
   isLocaleOn ? <IntlMessage id={localeKey} /> : localeKey.toString();
 
@@ -22,6 +21,13 @@ const columns = [
   {
     title: <h4>{setLocale("table.id")}</h4>,
     dataIndex: "id",
+  },
+  {
+    title: <h4>{setLocale("table.photo")}</h4>,
+    dataIndex: "photo",
+    render: (text, record) => {
+      return <Avatar src={`http://localhost:8000/${record.photo}`} size={64} />;
+    },
   },
   {
     title: <h4>{setLocale("table.name")}</h4>,
@@ -39,14 +45,7 @@ const columns = [
     title: <h4>{setLocale("table.phone")}</h4>,
     dataIndex: "phone",
   },
-  {
-    title: <h4>{setLocale("table.photo")}</h4>,
-    dataIndex: "photo",
-    render: (text, record) => {
-      console.log("Image URL:", `http://localhost:8000/${record.photo}`);
-      return <Avatar src={`http://localhost:8000/${record.photo}`} size={64} />;
-    },
-  },
+
   {
     title: <h4>{setLocale("table.position")}</h4>,
     dataIndex: "position",
@@ -60,13 +59,10 @@ const columns = [
 const Index = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const navCollapsed = useSelector((state) => state.theme.navCollapsed);
   const [open, setOpen] = useState(false);
   const openCreateEmployee = () => {
     setOpen(true);
   };
-  const isMobile = window.innerWidth <= 576;
-  const marginRight = isMobile ? "0" : navCollapsed ? "75px" : "250px";
   const { data, isLoading, isError } = useGetEmployeesData(
     pagination.current,
     pagination.pageSize
@@ -79,18 +75,6 @@ const Index = () => {
   if (isError) {
     return <div>Error loading users</div>;
   }
-
-  const colStyle = {
-    marginRight,
-    height: "100vh",
-    paddingLeft: 0,
-  };
-
-  const responsiveColStyle = {
-    width: "100%",
-    height: "auto",
-    paddingLeft: 0,
-  };
 
   const onSelectChange = (selectedKeys) => {
     setSelectedRowKeys(selectedKeys);
@@ -117,26 +101,35 @@ const Index = () => {
   return (
     <div>
       <Row>
-        <Col
-          flex={!navCollapsed ? "auto" : "1 1 auto"}
-          style={colStyle}
-          xs={responsiveColStyle}
-        >
+        <ResponsiveCol>
           <div
             style={{
               display: "flex",
               flexDirection: "row-reverse",
               justifyContent: "end",
-              marginTop: -55,
               marginBottom: 20,
             }}
           >
             <Row>
-              <Button type="primary" style={{ borderRadius: 50 }} onClick={openCreateEmployee} >
+              <Button
+                type="primary"
+                style={{ borderRadius: 50 }}
+                onClick={openCreateEmployee}
+              >
                 اضافه کردن کارمندان
                 <PlusCircleTwoTone />
               </Button>
-              <CreateEmployee open={open} onCancel={()=>setOpen(false)} />
+              <CreateEmployee open={open} onCancel={() => setOpen(false)} />
+            </Row>
+            <Row>
+              <Button
+                type="primary"
+                style={{ borderRadius: 50,backgroundColor:'red',marginLeft:'10px' }}
+              >
+                حذف کردن کارمندان
+                <DeleteOutlined />
+              </Button>
+              <DeleteEmployee />
             </Row>
           </div>
 
@@ -149,28 +142,8 @@ const Index = () => {
               pagination={false}
             />
           </Card>
-          <div
-            style={{ marginTop: "16px", display: "flex", alignItems: "center" }}
-          >
-            <Select
-              value={pagination.pageSize}
-              onChange={onPageSizeChange}
-              style={{ width: 80, marginRight: "8px" }}
-            >
-              <Select.Option value={5}>5</Select.Option>
-              <Select.Option value={10}>10</Select.Option>
-              <Select.Option value={20}>20</Select.Option>
-              <Select.Option value={30}>30</Select.Option>
-              <Select.Option value={50}>50</Select.Option>
-            </Select>
-            <Pagination
-              current={pagination.current}
-              pageSize={pagination.pageSize}
-              total={data.total}
-              onChange={onPageChange}
-            />
-          </div>
-        </Col>
+          <CustomPagination pageSize={pagination.pageSize} onPageSizeChange={onPageSizeChange} current={pagination.current} onPageChange={onPageChange} total={data.total}/>
+        </ResponsiveCol>
       </Row>
     </div>
   );

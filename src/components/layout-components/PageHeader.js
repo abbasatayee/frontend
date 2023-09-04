@@ -4,7 +4,7 @@ import IntlMessage from "../util-components/IntlMessage";
 import { css } from "@emotion/react";
 import { MEDIA_QUERIES } from "constants/ThemeConstant";
 import { useSelector } from "react-redux";
-import {  Row } from "antd";
+import { Card, Row } from "antd";
 
 export const PageHeader = ({ title, display }) => {
   const navCollapsed = useSelector((state) => state.theme.navCollapsed);
@@ -24,21 +24,25 @@ export const PageHeader = ({ title, display }) => {
   return display ? (
     <div
       css={css`
-        align-items: center;
         margin-bottom: 1rem;
 
         @media ${MEDIA_QUERIES.LAPTOP_ABOVE} {
-          display: flex;
         }
       `}
       flex={!navCollapsed ? "auto" : "1 1 auto"}
       style={colStyle}
       xs={responsiveColStyle}
     >
-        <h3 className="mb-0 mr-3 font-weight-semibold">
-          <IntlMessage id={title ? title : "home"} />
-        </h3>
-        <AppBreadcrumb />
+      <Card>
+        <Row justify="space-between" align="bottom">
+          <h3 className="mb-2 mr-3 font-weight-semibold">
+            <IntlMessage id={title ? title : "home"} />
+          </h3>
+          <h6>
+            <AppBreadcrumb />
+          </h6>
+        </Row>
+      </Card>
     </div>
   ) : null;
 };

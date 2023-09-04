@@ -3,9 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 import navigationConfig from "configs/NavigationConfig";
 import IntlMessage from 'components/util-components/IntlMessage';
+import { HomeOutlined } from '@ant-design/icons';
 
 let breadcrumbData = { 
-	'/app' : <IntlMessage id="home" />
+	'/app' :  <HomeOutlined />, 
 };
 
 navigationConfig.forEach((elm, i) => {
