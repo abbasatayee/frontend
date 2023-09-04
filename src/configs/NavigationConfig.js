@@ -7,7 +7,7 @@ const dashBoardNavTree = [
     path: `${APP_PREFIX_PATH}/dashboards`,
     title: "sidenav.dashboard",
     icon: DashboardOutlined,
-    breadcrumb: false,
+    breadcrumb: true,
     isGroupTitle: true,
     submenu: [
       {
@@ -15,7 +15,7 @@ const dashBoardNavTree = [
         path: `${APP_PREFIX_PATH}/dashboards/default`,
         title: "sidenav.dashboard.default",
         icon: DashboardOutlined,
-        breadcrumb: false,
+        breadcrumb: true,
         submenu: [],
       },
      
@@ -26,7 +26,7 @@ const dashBoardNavTree = [
     path: `${APP_PREFIX_PATH}/employees`,
     title: "sidenav.employees",
     icon: UserAddOutlined,
-    breadcrumb: false,
+    breadcrumb: true,
     isGroupTitle: true,
     submenu: [
       {
@@ -34,7 +34,7 @@ const dashBoardNavTree = [
         path: `${APP_PREFIX_PATH}/employees/attendance`,
         title: "sidenav.employees.attendance",
         icon: FieldTimeOutlined,
-        breadcrumb: false,
+        breadcrumb: true,
         submenu: [],
       },
       {
@@ -42,7 +42,7 @@ const dashBoardNavTree = [
         path: `${APP_PREFIX_PATH}/employees/salary_transactions`,
         title: "sidenav.employees.salary_transactions",
         icon: MoneyCollectFilled,
-        breadcrumb: false,
+        breadcrumb: true,
         submenu: [],
       },
      

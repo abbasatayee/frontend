@@ -78,9 +78,9 @@ export const LoginForm = (props) => {
     </>
   );
 };
-// LoginForm.propTypes = {
-//   extra: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-// };
+LoginForm.propTypes = {
+  extra: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+};
 const mapStateToProps = ({ auth }) => {
   const { loading, message, showMessage, token, redirect } = auth;
   return { loading, message, showMessage, token, redirect };

@@ -34,14 +34,14 @@ const BreadcrumbRoute = props => {
 	});
   
 	return (
-		<Breadcrumb items={breadcrumbItems} />
+		<Breadcrumb items={breadcrumbItems}/>
 	);
 };
 
 export class AppBreadcrumb extends Component {
 	render() {
 		return (
-			<BreadcrumbRoute />
+			<BreadcrumbRoute/>
 		)
 	}
 }

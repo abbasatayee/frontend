@@ -9,7 +9,6 @@ const DefaultDashboard = () => {
   const marginRight = isMobile ? 0 : navCollapsed ? "75px" : "250px";
   const colStyle = {
     marginRight,
-    height: "100vh",
     paddingLeft: 0,
   };
 
