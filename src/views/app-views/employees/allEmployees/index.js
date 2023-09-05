@@ -1,19 +1,11 @@
 import React, { useState } from "react";
-import {
-  Card,
-  Row,
-  Table,
-  Avatar,
-  Button,
-} from "antd";
+import { Row, Table, Avatar, Col } from "antd";
 import IntlMessage from "components/util-components/IntlMessage";
 import { useGetEmployeesData } from "queries/employee.query";
-import CreateEmployee from "./create.employee";
-import { DeleteOutlined, PlusCircleTwoTone } from "@ant-design/icons";
-import DeleteEmployee from "./delete.employee";
 import CustomPagination from "views/app-views/pagination/customPagination";
-import '../../../../style/app-views.css'
+import "../../../../style/app-views.css";
 import ResponsiveCol from "views/app-views/styleJs/ResponsiveCol";
+import Header from "views/app-views/Header/Header";
 const setLocale = (localeKey, isLocaleOn = true) =>
   isLocaleOn ? <IntlMessage id={localeKey} /> : localeKey.toString();
 
@@ -59,10 +51,6 @@ const columns = [
 const Index = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const [open, setOpen] = useState(false);
-  const openCreateEmployee = () => {
-    setOpen(true);
-  };
   const { data, isLoading, isError } = useGetEmployeesData(
     pagination.current,
     pagination.pageSize
@@ -99,41 +87,11 @@ const Index = () => {
   };
 
   return (
-    <div>
-      <Row>
+    <Row>
+      <Col lg={24} md={24} xs={24} sm={24}>
         <ResponsiveCol>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row-reverse",
-              justifyContent: "end",
-              marginBottom: 20,
-            }}
-          >
-            <Row>
-              <Button
-                type="primary"
-                style={{ borderRadius: 50 }}
-                onClick={openCreateEmployee}
-              >
-                اضافه کردن کارمندان
-                <PlusCircleTwoTone />
-              </Button>
-              <CreateEmployee open={open} onCancel={() => setOpen(false)} />
-            </Row>
-            <Row>
-              <Button
-                type="primary"
-                style={{ borderRadius: 50,backgroundColor:'red',marginLeft:'10px' }}
-              >
-                حذف کردن کارمندان
-                <DeleteOutlined />
-              </Button>
-              <DeleteEmployee />
-            </Row>
-          </div>
-
-          <Card>
+          <Header></Header>
+          <div style={{ overflowX: "auto" }}>
             <Table
               rowSelection={rowSelection}
               columns={columns}
@@ -141,11 +99,17 @@ const Index = () => {
               rowKey="id"
               pagination={false}
             />
-          </Card>
-          <CustomPagination pageSize={pagination.pageSize} onPageSizeChange={onPageSizeChange} current={pagination.current} onPageChange={onPageChange} total={data.total}/>
+            <CustomPagination
+              pageSize={pagination.pageSize}
+              onPageSizeChange={onPageSizeChange}
+              current={pagination.current}
+              onPageChange={onPageChange}
+              total={data.total}
+            />
+          </div>
         </ResponsiveCol>
-      </Row>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

@@ -1,0 +1,17 @@
+.HeaderCard{
+    background-color:#dae1f3;
+    border-radius:0px;
+    margin-bottom:0px;
+    border:1px solid #dae1f3;
+    padding: 10px;
+}
+
+
+.formStyle {
+    display: flex;
+    justify-content: space-between;
+}
+.formFooter{
+    margin-top: 50px;
+     margin-bottom: 0px; 
+}

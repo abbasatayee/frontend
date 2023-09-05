@@ -1,34 +1,17 @@
-import { Card, Col, Row } from "antd";
+import { Card, Row } from "antd";
 import React from "react";
-import { useSelector } from "react-redux";
+import ResponsiveCol from "views/app-views/styleJs/ResponsiveCol";
 
 const index = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const navCollapsed = useSelector((state) => state.theme.navCollapsed);
-  const isMobile = window.innerWidth <= 576;
-  const marginRight = isMobile ? 0 : navCollapsed ? "75px" : "250px";
-  const colStyle = {
-    marginRight,
-    height: "100vh",
-    paddingLeft: 0,
-  };
-
-  const responsiveColStyle = {
-    width: "100%",
-    height: "auto",
-    paddingLeft: 0,
-  };
   return (
     <Row>
-      <Col
-        flex={!navCollapsed ? "auto" : "1 1 auto"}
-        style={colStyle}
-        xs={responsiveColStyle}
-      >
+      <ResponsiveCol>
         <Card>
-          <h2>تراکنش  های حقوقی</h2>
+          <sapn>
+            Hellow world
+          </sapn>
         </Card>
-      </Col>
+        </ResponsiveCol>
     </Row>
   );
 };

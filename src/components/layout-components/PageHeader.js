@@ -33,7 +33,6 @@ export const PageHeader = ({ title, display }) => {
       style={colStyle}
       xs={responsiveColStyle}
     >
-      <Card>
         <Row justify="space-between" align="bottom">
           <h3 className="mb-2 mr-3 font-weight-semibold">
             <IntlMessage id={title ? title : "home"} />
@@ -42,7 +41,6 @@ export const PageHeader = ({ title, display }) => {
             <AppBreadcrumb />
           </h6>
         </Row>
-      </Card>
     </div>
   ) : null;
 };

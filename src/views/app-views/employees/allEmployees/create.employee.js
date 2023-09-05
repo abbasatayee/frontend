@@ -10,6 +10,7 @@ import { Button, Form, Input, Modal, Row, Select, Upload } from "antd";
 import { useEmployeeCreate } from "queries/employee.query";
 import React, { useRef } from "react";
 import { useState } from "react";
+import '../../../../style/app-views.css';
 const CreateEmployee = ({ open, onCancel }) => {
   const { mutate, isLoading } = useEmployeeCreate();
   const [photo, setPhoto] = useState(null);
@@ -53,26 +54,23 @@ const CreateEmployee = ({ open, onCancel }) => {
   };
   return (
     <Modal
-      open={open}
-      title="کارمندان"
-      onCancel={handleModalCancel}
-      width={600}
-      footer={null}
-      bodyStyle={{
-        overflowY: "auto",
-        maxHeight: "calc(100vh - 130px)",
-        paddingLeft:'10px',
-        marginLeft:'-23px'
-      }}
-    >
+    open={open}
+    title="کارمندان"
+    onCancel={handleModalCancel}
+    width={600}
+    footer={null}
+    className="modalBodyStyle"
+    
+  >
       <Form
+        
         ref={formRef}
         layout="vertical"
         name="login-form"
         initialValues={initialEmployee}
         onFinish={onCreate}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="formStyle">
           <Form.Item
             style={{ flex: 1, marginRight: "0" }}
             name="name"
@@ -100,7 +98,7 @@ const CreateEmployee = ({ open, onCancel }) => {
             <Input prefix={<UserAddOutlined className="text-primary" />} />
           </Form.Item>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="formStyle">
           <Form.Item
             style={{ flex: 1, marginRight: "0" }}
             label="رتبه"
@@ -126,12 +124,16 @@ const CreateEmployee = ({ open, onCancel }) => {
                 required: true,
                 message: "شماره تماس ضروری است",
               },
+              {
+                pattern: /^[0-9]*$/,
+                message: "لطفا اعداد را وارد نمایید",
+              },
             ]}
           >
             <Input prefix={<PhoneOutlined className="text-primary" />} />
           </Form.Item>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="formStyle">
           <Form.Item
             style={{ flex: 1, marginRight: "0" }}
             label="جنسیت"
@@ -156,6 +158,10 @@ const CreateEmployee = ({ open, onCancel }) => {
               {
                 required: true,
                 message: "معاش ضروری است",
+              },
+              {
+                pattern: /^[0-9]*$/,
+                message: "لطفا اعداد را وارد نمایید",
               },
             ]}
           >
@@ -200,20 +206,16 @@ const CreateEmployee = ({ open, onCancel }) => {
           </Upload>
         </Form.Item>
         <Row>
-          <Form.Item style={{ marginTop: "50px", marginBottom: "0px" }}>
+          <Form.Item className="formFooter">
             <Button type="primary" htmlType="submit" loading={isLoading}>
               ثبت کردن
               <PlusCircleOutlined />
             </Button>
             <Button
-              color="bg-danger"
+              type="primary"
+              danger
               onClick={handleModalCancel}
-              style={{
-                marginRight: "10px",
-                backgroundColor: "red",
-                color: "white",
-                border: "none",
-              }}
+              style={{marginRight:'10px'}}
             >
               لغو کردن
               <MinusCircleOutlined />
