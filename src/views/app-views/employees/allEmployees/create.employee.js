@@ -91,7 +91,7 @@ const CreateEmployee = ({ open, onCancel }) => {
             rules={[
               {
                 required: true,
-                message: "لطفا تخلص ضروری است",
+                message: " تخلص ضروری است",
               },
             ]}
           >

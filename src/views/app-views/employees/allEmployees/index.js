@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Row, Table, Avatar, Col } from "antd";
+import { Row, Table, Avatar, Col, Tooltip, Button } from "antd";
 import IntlMessage from "components/util-components/IntlMessage";
-import { useGetEmployeesData } from "queries/employee.query";
+import { useDeleteEmployee, useGetEmployeesData } from "queries/employee.query";
 import CustomPagination from "views/app-views/pagination/customPagination";
 import "../../../../style/app-views.css";
 import ResponsiveCol from "views/app-views/styleJs/ResponsiveCol";
-import Header from "views/app-views/Header/Header";
+import Search from "antd/es/input/Search";
+import CreateEmployee from "./create.employee";
+import CreateButton from "views/app-views/Buttons/create.button";
+import DeleteButton from "views/app-views/Buttons/delete.button";
 const setLocale = (localeKey, isLocaleOn = true) =>
   isLocaleOn ? <IntlMessage id={localeKey} /> : localeKey.toString();
 
@@ -51,11 +54,18 @@ const columns = [
 const Index = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+  const [open, setOpen] = useState(false);
+  const openCreateEmployee = () => {
+    setOpen(true);
+  };
+  const onSearch = (value) => {
+    console.log(value);
+  };
+  const { mutate } = useDeleteEmployee();
   const { data, isLoading, isError } = useGetEmployeesData(
     pagination.current,
     pagination.pageSize
   );
-  console.log("data list", data);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -85,12 +95,44 @@ const Index = () => {
       Table.SELECTION_NONE,
     ],
   };
+  const deleteEmployees = () => {
+    mutate(
+      {
+        ids: selectedRowKeys,
+      },
+      {
+        onSuccess: () => {
+          console.log("users successfully deleted");
+        },
+      }
+    );
+  };
 
   return (
     <Row>
       <Col lg={24} md={24} xs={24} sm={24}>
         <ResponsiveCol>
-          <Header></Header>
+          <Row justify="end" className="HeaderCard">
+            <Col span="6">
+              <Search
+                placeholder="input search text"
+                onSearch={onSearch}
+                enterButton
+              />
+            </Col>
+            <Col span="6"></Col>
+            <Col span="6"></Col>
+            <Col span="1"></Col>
+            <Col span="5">
+              <CreateButton onClick={openCreateEmployee}></CreateButton>
+              <CreateEmployee open={open} onCancel={() => setOpen(false)} />
+              {selectedRowKeys.length > 0 ? (
+                <DeleteButton onClick={deleteEmployees}></DeleteButton>
+              ) : (
+                ""
+              )}
+            </Col>
+          </Row>
           <div style={{ overflowX: "auto" }}>
             <Table
               rowSelection={rowSelection}
